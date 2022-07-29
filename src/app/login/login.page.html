@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="ion-text-center">
-      <ion-icon name="at-circle-outline"></ion-icon>
-	  Inicio de Sesión
-      <ion-icon name="at-circle-outline"></ion-icon>
+      LOGIN
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<br>
+<br>
 
-<ion-content>
+<ion-content class="cuerpo">
   <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
     <ion-item lines="none">
       <ion-label position="floating" class="dato">Email</ion-label>
@@ -27,7 +27,7 @@
         </div>
       </ng-container>
     </div>
-
+    <br>
     <ion-item lines="none">
       <ion-label position="floating" class="dato">Contraseña</ion-label>
       <ion-input class="dato" formControlName="password"> 
@@ -59,12 +59,9 @@
     </ion-row>
   </form>
   {{errorMessage}}
-</ion-content>
-
-<ion-footer>
   <ion-button 
-  color="danger" 
+  color="success" 
   expand="block" 
   (click)="goToRegister()"
   >Registrarse</ion-button>
-</ion-footer>
+</ion-content>
