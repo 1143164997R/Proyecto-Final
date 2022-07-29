@@ -10,7 +10,7 @@
   </ion-header>
   <ion-content>
   
-    <h1>Artistas</h1>
+    <h2>ARTISTAS</h2>
   
     <ion-slides [options]="slideOps">
   
@@ -18,30 +18,36 @@
         <ion-avatar (click)="showArtistSongs(artist)">
           <img src={{artist.image}} />
           <br>
+          <br>
+          <br>
           <span>{{artist.name}}</span>
         </ion-avatar>
       </ion-slide>
   
     </ion-slides>
   
-    <h1>Albumes</h1>
+    <h2>ALBUNES</h2>
 
     <ion-slides [options]="slideOps">
       <ion-slide *ngFor="let album of albums">
         <ion-avatar (click)="showAlbumSongs(album)" class="square-avatar">
           <img src={{album.image}} />
           <br>
+          <br>
+          <br>
           <span>{{album.name}}</span>
         </ion-avatar>
       </ion-slide>
     </ion-slides>
 
-    <h1>Artistas Json</h1>
+    <h2>ARTISTAS JSON</h2>
     
     <ion-slides [options]="slideOps">
       <ion-slide *ngFor="let artists of test">
         <ion-avatar>
           <img src={{artists.images}} />
+          <br>
+          <br>
           <br>
           <span>{{artists.name}}</span>
         </ion-avatar>
