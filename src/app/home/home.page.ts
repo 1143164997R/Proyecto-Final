@@ -40,16 +40,16 @@ export class HomePage {
     private modalController: ModalController) {}
 
   ionViewDidEnter(){
-    //Lista artistas api
+   
     this.musicService.getArtists().then(listArtists =>{
       this.artists = listArtists;
     });
 
-    //Lista artistas apijson. NO SE COMO MOSTRARLO
+    
     this.artistsFromJson = this.musicService.getArtistsFromJson();
     this.test = this.artistsFromJson.artists;
     
-    //albums api
+    
     this.musicService.getAlbums().then(listAlbums =>{
       this.albums = listAlbums;
     })
