@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <ion-icon name="close-circle-outline"></ion-icon>
+      Inicio de Sesión
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+    <ion-item lines="none">
+      <ion-label position="floating" class="dato">Email</ion-label>
+      <ion-input  class="dato" formControlName="email"></ion-input>
+    </ion-item>
+
+    <div>
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div
+          *ngIf="
+            loginForm.get('email').hasError(validation.type) && 
+            (loginForm.get('email').dirty || 
+            loginForm.get('email').touched)
+          "
+          class="error">
+            {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item lines="none">
+      <ion-label position="floating" class="dato">Contraseña</ion-label>
+      <ion-input  class="dato" #passwordEyeRegister  [type]="passwordTypeInput"  formControlName="password" clearOnEdit="false"> 
+        </ion-input>
+      <button  item-end  class="btn_eye_icon"  (click)="togglePasswordMode()">
+        <ion-icon  [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+      </button>
+    </ion-item>
+
+    <div>
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div *ngIf="
+          loginForm.get('password').hasError(validation.type) && 
+          (loginForm.get('password').dirty || 
+          loginForm.get('password').touched)
+          "
+          class="error">
+            {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-row>
+      <ion-col>
+        <ion-button 
+        type="submit" 
+        color="success" 
+        expand="block" 
+        [disabled]="!loginForm.valid"
+        >Ingresar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+  {{errorMessage}}
+</ion-content>
+
+<ion-footer>
+  <ion-button 
+  color="danger" 
+  expand="block" 
+  (click)="goToRegister()"
+  >Registrarse</ion-button>
+</ion-footer>

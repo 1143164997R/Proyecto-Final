@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Configuración</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="success-background">
+    <ion-avatar (click)="takePhoto()">
+      <img [src]="userImage" *ngIf="!user.image"/>
+      <img [src]="user.image" *ngIf="user.image"/>
+    </ion-avatar>
+    <h1>{{user.name}} {{user.last_name}} 
+      <ion-button color="medium" (click)="openUpdateModal()">
+      <ion-icon  name="create-outline"></ion-icon>
+    </ion-button>
+    </h1> 
+    <h2>{{user.email}}</h2>
+    <ion-grid>
+      <ion-row class="aling-items-center text-center row-header">
+        <ion-col>24</ion-col>
+      <ion-col>{{user.following_users.length? user.following_users.length : 0 }}</ion-col>
+      <ion-col id ="followee" >{{user.followed_users.length? user.followed_users.length : 0 }}</ion-col>
+    </ion-row>
+       <ion-row>
+        <ion-col>Canciones favoritas</ion-col>
+        <ion-col>Seguidores</ion-col>
+        <ion-col>Seguidos</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <h2>Buscar Usuarios</h2>
+  <ion-searchbar (keyup)="getUsers($event.target.value)"></ion-searchbar>
+  <div class="ion-text-center" *ngIf="searching">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div *ngIf="!users || users.length === 0">
+    <h3>Oops no se encontraron usuarios</h3>
+    <ion-text>{{text}}</ion-text>
+  </div>
+  <ion-virtual-scroll
+  [items]="users"
+  *ngIf="users"
+  >
+  <ion-item *virtualItem="let user">
+    {{user.name}} {{user.last_name}}
+    <ion-buttons slot="end">
+      <ion-button (click)="followUser(user.id)" *ngIf="!user.follow">
+        <ion-icon name="person-add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+  </ion-virtual-scroll>
+</ion-content>
+
